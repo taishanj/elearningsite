@@ -1,0 +1,23 @@
+<?php
+require("connection.php");
+	$user_email = $_POST["email"];
+try
+{
+	$stmt = $conn->prepare("SELECT * FROM MyGuests WHERE email=?");
+	$stmt->execute([$user_email]); 
+	$user = $stmt->fetch();
+	if ($user) {
+    // email found
+    echo "Email was found";
+	} else {
+    // or not
+    echo "Will create new user";
+	}
+}
+catch(PDOException $e)
+{
+    echo $sql . "<br>" . $e->getMessage();
+}
+
+$conn = null;
+?>

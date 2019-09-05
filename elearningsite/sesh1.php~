@@ -1,0 +1,6 @@
+<?php
+
+$myHouse = "maraval";
+$mySchool= "cunupia"; 
+	echo "<a href=sesh2.php?myHouse=diego&mySchool=trinity>Send variables via URL!</a>";
+?>

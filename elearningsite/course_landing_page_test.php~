@@ -1,0 +1,35 @@
+<?php
+session_start();
+$image = $_SESSION['image'];
+echo "<img src=imgs/".$image.">";
+/*
+try
+{
+	$stmt = $conn->prepare("SELECT * FROM MyGuests WHERE email=?");
+	$stmt->execute([$user_email]); 
+	$user = $stmt->fetch();
+	if ($user) {
+    // email found
+    $acct_exists = true;
+    echo "Email was found please create account with new email";
+    header('Location: register_form.php'); 
+	} else {
+    $hash_password = password_hash($user_password,PASSWORD_BCRYPT,$options);
+    /*Creates a new user account (email) if none already exists 
+    $sql = "INSERT INTO MyGuests (firstname, lastname, email, password)
+    VALUES ('$_POST[firstname]','$_POST[lastname]', '$_POST[email]','$hash_password')";
+    // use exec() because no results are returned
+    $conn->exec($sql);
+    header('Location: login_form.php'); 
+    /*Message used to test whether loop is successful*/
+    /*echo "New record created successfully";
+	}
+}
+catch(PDOException $e)
+{
+    echo $sql . "<br>" . $e->getMessage();
+}
+
+$conn = null;
+*/
+?>

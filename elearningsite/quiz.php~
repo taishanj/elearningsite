@@ -1,0 +1,52 @@
+<html>
+<head>
+<script type="text/javascript" >
+answer[0] = "London"
+answer[1] = "Four"
+function test(form)
+{
+	for(j=0; j<2; j++)
+	{
+		currQuestion = j*3;
+	
+		for (i=0;i<3;i++)
+		{
+			if(form.elements[i + currQuestion].checked)
+			{
+			if(form.elements[i + currQuestion].value == answer[j])
+			{
+				alert("Correct");
+			}
+			else
+			{
+				alert("Incorrect, the correct answer is " + answer[j]);
+			}
+			}	
+		}
+	}
+}
+
+
+</script>
+</head>
+<body>
+<form>
+	<input name="Radio1" type="radio" value="Rome">Rome
+	<input name="Radio1" type="radio" value="London">London
+	<input name="Radio1" type="radio" value="Beijing">Beijing
+	<br>
+	<input name="Radio1" type="radio" value="Three">Three
+	<input name="Radio1" type="radio" value="Four">Four
+	<input name="Radio1" type="radio" value="Five">Five
+	<!--
+	<br>
+	<input name="Radio1" type="radio" value="Dutch">Dutch
+	<input name="Radio1" type="radio" value="Mauri">Mauri 
+	<input name="Radio1" type="radio" value="Taki Taki">Taki Taki
+	-->
+	
+	<input name="Submit1" type="submit" value="submit" onclick="test(this.form)">
+</form>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+<?php
+		// Retrieve the URL variables (using PHP).
+		$num = $_GET['myNumber'];
+		$fruit = $_GET['myFruit'];
+		echo "Number: ".$num."  Fruit: ".$fruit;
+	?>

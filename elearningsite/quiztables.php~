@@ -1,0 +1,32 @@
+<?php
+/*Not quite sure what I am attempting here. The basic idea is to create a table
+	within the elearn database that stores multiple choice quizzes,answers etc An additional
+	table will be needed to store user data such as number of attempts, date completed etc
+*/
+require("connection.php");
+
+try{
+	    
+    $quizTable = "CREATE TABLE IF NOT EXISTS Quizzes(
+    quizIDs INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    quizQUEST VARCHAR(300) NOT NULL,
+    quizANS VARCHAR(300) NOT NULL,
+    quizRESP VARCHAR(300) NOT NULL,
+    quizCHOICE1 VARCHAR(300) NOT NULL,
+    quizCHOICE2 VARCHAR(300) NOT NULL,
+    quizCHOICE3 VARCHAR(300) NOT NULL,
+	 quizCHOICE4 VARCHAR(300) NOT NULL
+    )";
+     
+
+	
+    // use exec() because no results are returned
+    $conn->exec($quizTable);
+    echo "Table Quizzes created successfully\n";
+    
+	}
+	catch (PDOExcetion $e)
+	{
+		 echo $quizTable . "<br>" . $e->getMessage();
+	}
+?>
