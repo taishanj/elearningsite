@@ -26,7 +26,7 @@
 	
 	<div>
 	//Video music playlist unrelated to actual course content but basically shows how it will be set up
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLoJrTQu_-SRh_vEdzA6ru7ooQgzslID6L"
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLqPENa8iy0CxwHk60OGKzkbfezmf-EG-F"
 	 frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>
 	
