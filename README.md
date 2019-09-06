@@ -5,20 +5,32 @@ This e-learning website project was started on the 24th September 2019. After or
 This website is designed with the intention of providing Udemy, Coursera like self learning environment and tools. Specifically, video content that is categorized by field and sub topics as well as assessment material to determine users mastery of the subject material. There are additional features that will add greater user experience and efficacy of content delivery however they are as yet to be implemented.
 
 The current project is able to handle (basically) the following:
-New user registration
-Login/Logout 
-Display user dashboard
-Display library/menu of available content/courses from MySQL Database
-Update user progress to database (click counter using jquery AJAX). This feature is far from complete but provides a basic framework for achieving the task.
+1. New user registration  
+
+2. Login/Logout  
+
+3. Display user dashboard  
+
+4. Display library/menu of available content/courses from MySQL Database  
+
+5. Update user progress to database (click counter using jquery AJAX). This feature is far from complete but provides a basic framework for achieving the task.  
+
 
 Features that are next to be added and critical to mvp (minimally viable prodcut) are: (Target Delivery date: 14th Sept 2019)
-Secure (Login)/Email Confirmation and validation i.e. @g*iel.com not permitted
-Email contact directly from website
-Student progress bar
-Side bar menu with Subject categories (History- Egyptian civilization, Mayan civilization etc)
-Quizzes/Evaluations that load when user selects a category
-Uploadable profile pic/image
-User friendly course upload UI- Subject, topic name, video (Youtube,Vimeo) link, Mulitple choice questions input, Timeframe for completion specification
+1. Secure (Login)/Email Confirmation and validation i.e. @g*iel.com not permitted  
+
+2. Email contact directly from website  
+
+3. Student progress bar  
+
+4. Side bar menu with Subject categories (History- Egyptian civilization, Mayan civilization etc)  
+
+5. Quizzes/Evaluations that load when user selects a category  
+
+6. Uploadable profile pic/image  
+
+7. User friendly course upload UI- Subject, topic name, video (Youtube,Vimeo) link, Mulitple choice questions input, Timeframe for completion specification  
+
 
 
 Database setup info is not included.
