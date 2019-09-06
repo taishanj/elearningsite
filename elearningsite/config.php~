@@ -9,7 +9,8 @@ try {
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $sql = "CREATE DATABASE elearn";
-    // use exec() because no results are returned
+    
+    //exec() is used because no results are returned
     $conn->exec($sql);
     echo "Database created successfully<br>";
     }
