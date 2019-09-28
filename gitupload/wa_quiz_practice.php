@@ -21,26 +21,6 @@
 			</div>
 				<div class="col-xs-10 col-sm-5 col-lg-5">
 					<div class="intro">
-						<?php //if(empty($_SESSION['name'])){?>
-						<!--
-						<form class="form-signin" method="post" id='signin' name="signin" action="questions.php">
-							<div class="form-group">
-							    <select class="form-control" name="category" id="category">
-							        <option value="">Choose your category</option>
-                                  <option value="1">Present Tense I</option>
-                                  <option value="2">Present Tense II</option>
-                                  <option value="3">PHP</option>
-                                  <option value="4">CSS</option>                                
-                                </select>
-                                <span class="help-block"></span>
-							</div>
-
-							<br>
-							<button class="btn btn-success btn-block" type="submit">
-								Submit!!!
-							</button>
-						</form>
-						-->
 
 						<?php if(!empty($_SESSION['name'])){//}else{?>
 						    <form class="form-signin" method="post" id='signin' name="signin" action="wa_questions.php">

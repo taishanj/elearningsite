@@ -9,23 +9,27 @@
 
 	<?php 
 
-	if(!empty($_SESSION['name'])){
-	
-	    $right_answer=0;
-	    $wrong_answer=0;
-	    $unanswered=0; 
-	
-	   $keys=array_keys($_POST);
-	   $order=join(",",$keys);//What?
-		//Can I randomize questions
-	   $response=$conn->prepare("select QUEST_id,QUEST_correct_answer from Questions where QUEST_id  ORDER BY QUEST_id");
+	if(!empty($_SESSION['name'])){	
+		$username =  $course_chosen = $module_chosen = '';
+		$right_answer=0;
+	   $wrong_answer=0;
+	   $unanswered=0; 
+	   $username=$_SESSION['name'];
+	   $course_chosen = implode(",",$_SESSION['course_number']);
+		$module_chosen=$_SESSION['module_number'];
+  		$response=$conn->prepare("select QUEST_what_question_number,QUEST_correct_answer from Questions where 
+ 		QUEST_what_module= '$module_chosen' and QUEST_what_course='$course_chosen' and QUEST_what_question_number ORDER BY QUEST_what_question_number");
 	   $response->execute();
 	   while($result = $response->fetch())
 	   {
-	  	  if($result['QUEST_correct_answer']== $_POST[$result['QUEST_id']])
+	   	//$convert = implode(",",$result);
+	   	//echo $convert;
+	   	//echo '<br>';
+	    
+	  	  if($result['QUEST_correct_answer']== $_POST[$result['QUEST_what_question_number']])
 	       {
 	               $right_answer++;
-	           }else if($_POST[$result['QUEST_id']]==5)
+	           }else if($_POST[$result['QUEST_what_question_number']]==5)
 	           {
 	               $unanswered++;
 	           }
@@ -33,11 +37,13 @@
 	           {
 	               $wrong_answer++;
 	           }
+	           
 	   }
-	   $name=$_SESSION['name'];  
-	   $score_update = "update Users set USER_percent_completed='$right_answer' where USER_name='$name'";
-	   $sql = $conn->prepare($score_update);
-	   $sql->execute();
+	     $percent_course_completed;
+	     $score_update = "UPDATE Users SET USER_percent_completed='$right_answer'/ where USER_firstname='$name'";
+	   //$score_update = "update Users set USER_percent_completed='$right_answer' where USER_name='$name'";
+	  // $sql = $conn->prepare($score_update);
+	   //$sql->execute();
 	?>
 	        <!-- Bootstrap -->
 	        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
