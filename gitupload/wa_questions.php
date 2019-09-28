@@ -5,12 +5,16 @@
 ?>
 
 <?php 
-	   $subject_name = $module= $username = '';
+	   $username =  $course_chosen = $module_chosen = '';
 	   $username=$_SESSION['name'];
-		$module=$_POST['module_num'];
+	   $course_chosen = implode(",",$_SESSION['course_number']);
+	   $module_chosen = $_POST['module_num'];
+		$_SESSION['module_number']=$_POST['module_num'];
 	   //$subject_name=$_SESSION['subject_chosen'];//??? How to set session variable to correct subject (lesson load page?)
 		try
 		{		
+			//Is this Insert necessary?
+			/*
 			if(!empty($username))
 			{
 		    	$conn->beginTransaction();
@@ -19,8 +23,10 @@
 		    	$conn->commit();
 			   $conn->lastInsertId();
 		   }	
+		   */
 		   if(!empty($username))
 		   { 
+		   
 ?>
 	   <header>
 		   <p class="text-center">
@@ -33,14 +39,15 @@
 						Responsive Quiz Application Using PHP, MySQL, jQuery, Ajax and Twitter Bootstrap
 					</p>
 					<hr>
-					<form class="form-horizontal" role="form" id='login' method="post" action="result.php">
+					<form class="form-horizontal" role="form" id='login' method="post" action="wa_result.php">
 						<?php 
-		               $res= $conn->prepare("select * from Questions where QUEST_module_num= '$module'");//have i changed var names?
+							//How to randomize and get same results from wa_result.php
+		              $res= $conn->prepare("SELECT * FROM Questions WHERE 
+		              								QUEST_what_course='$course_chosen' AND QUEST_what_module='$module_chosen'");
 	                	$res->execute();
 	                  $rows = $res->rowCount();
 							$i=1;
 							while($result = $res->fetch()){
-								//echo "Here it is " . $result['QUEST_id'];
 	               ?>   
 	               <?php 
 	               
@@ -49,15 +56,15 @@
 	               ?>       
 			            <div id='question<?php echo $i;?>' class='cont'>
 		               <p class='questions' id="qname<?php echo $i;?>"> <?php echo $i?>.<?php echo $result['QUEST_name'];?></p>
-	                  <input type="radio" value="1" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer1'];?>
+	                  <input type="radio" value="1" id='radio1_<?php echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer1'];?>
 	                  <br/>
-	                  <input type="radio" value="2" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer2'];?>
+	                  <input type="radio" value="2" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer2'];?>
 	                  <br/>
-	                  <input type="radio" value="3" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer3'];?>
+	                  <input type="radio" value="3" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer3'];?>
 	                  <br/>
-	                  <input type="radio" value="4" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer4'];?>
+	                  <input type="radio" value="4" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer4'];?>
 	                  <br/>
-	                  <input type="radio" checked='checked' style='display:none' value="5" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['id'];?>'/>                                                                      
+	                  <input type="radio" checked='checked' style='display:none' value="5" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/>                                                                      
 	                  <br/>
 	                  <button id='next<?php echo $i;?>' class='next btn btn-success' type='button'>Next</button>
 	               </div>    
@@ -69,15 +76,15 @@
 		            <div id='question<?php echo $i;?>' class='cont'>
 		               <p class='questions' id="qname<?php echo $i;?>"><?php echo $i?>.<?php echo $result['QUEST_name'];?></p>
 		    
-	                   <input type="radio" value="1" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo  $result['QUEST_answer1'];?>
+	                   <input type="radio" value="1" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo  $result['QUEST_answer1'];?>
 	                  <br/>
-	                  <input type="radio" value="2" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer2'];?>
+	                  <input type="radio" value="2" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer2'];?>
 	                  <br/>
-	                  <input type="radio" value="3" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer3'];?>
+	                  <input type="radio" value="3" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer3'];?>
 	                  <br/>
-	                  <input type="radio" value="4" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer4'];?>
+	                  <input type="radio" value="4" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer4'];?>
 	                  <br/>
-	                  <input type="radio" checked='checked' style='display:none' value="5" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/>                                                                    
+	                  <input type="radio" checked='checked' style='display:none' value="5" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/>                                                                    
 	                  <br/>
 	                  <button id='next<?php echo $i;?>' class='next btn btn-success' type='button'>Next</button>
 	            
@@ -90,15 +97,15 @@
 	               <div id='question<?php echo $i;?>' class='cont'>
 	                 <p class='questions' id="qname<?php echo $i;?>"><?php echo $i?>.<?php echo $result['QUEST_name'];?></p>
 	                
-	                 <input type="radio" value="1" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer1'];?>
+	                 <input type="radio" value="1" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer1'];?>
 	                 <br/>
-	                 <input type="radio" value="2" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer2'];?>
+	                 <input type="radio" value="2" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer2'];?>
 	                 <br/>
-	                 <input type="radio" value="3" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer3'];?>
+	                 <input type="radio" value="3" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer3'];?>
 	                 <br/>
-	                 <input type="radio" value="4" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer4'];?>
+	                 <input type="radio" value="4" id='radio1_<?php  echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/><?php echo $result['QUEST_answer4'];?>
 	                 <br/>
-	                 <input type="radio" checked='checked' style='display:none' value="5" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/>                                                                      
+	                 <input type="radio" checked='checked' style='display:none' value="5" id='radio1_<?php echo $result['QUEST_what_question_number'];?>' name='<?php  echo $result['QUEST_what_question_number'];?>'/>                                                                      
 	                 <br/>
 	                 <button id='pre<?php echo $i;?>' class='previous btn btn-success' type='button'>Previous</button>                    
 	                 <button id='next<?php echo $i;?>' class='next btn btn-success' type='submit'>Finish</button>
@@ -112,60 +119,30 @@
 					</form>
 				</div>
 			</div>
-		<?php
+			<script>
+				$('.cont').addClass('hide');
+				count=$('.questions').length;
+				//alert("Count is"+count);??
+			   $('#question'+1).removeClass('hide');
 		
-			if(isset($_POST[1]))
-	      { 
-		      $keys=array_keys($_POST);
-		      $order=join(",",$keys);
-	        $response=$conn->prepare("select QUEST_id,QUEST_correct_answer from Questions where QUEST_id  ORDER BY QUEST_id");
-	        $response->execute();
-	        $right_answer=0;
-	        $wrong_answer=0;
-	        $unanswered=0;
-		     while($result=$response->fetch())
-		     {
-			     if($result['QUEST_answer']==$_POST[$result['QUEST_id']])
-		        {
-				     $right_answer++;
-		        }
-		        else if($_POST[$result['QUEST_id']]==5)
-		        {
-			        $unanswered++;
-		        }
-		        else
-		        {
-		           $wrong_answer++;
-		        }
-		     }
-			     echo "right_answer : ". $right_answer."<br>";
-			     echo "wrong_answer : ". $wrong_answer."<br>";
-			     echo "unanswered : ". $unanswered."<br>";
-	   }
-	   ?>
-				<script>
-					$('.cont').addClass('hide');
-					count=$('.questions').length;
-				   $('#question'+1).removeClass('hide');
-			
-					$(document).on('click','.next',function()
-					{
-						element=$(this).attr('id');
-					   last = parseInt(element.substr(element.length - 1));
-					   nex=last+1;
-					   $('#question'+last).addClass('hide');
-					   $('#question'+nex).removeClass('hide');
-					 });
-			
-					$(document).on('click','.previous',function()
-					{
-				      element=$(this).attr('id');
-			         last = parseInt(element.substr(element.length - 1));
-			         pre=last-1;
-			         $('#question'+last).addClass('hide');
-			         $('#question'+pre).removeClass('hide');
-			      });
-				</script>
+				$(document).on('click','.next',function()
+				{
+					element=$(this).attr('id');
+				   last = parseInt(element.substr(element.length - 1));
+				   nex=last+1;
+				   $('#question'+last).addClass('hide');
+				   $('#question'+nex).removeClass('hide');
+				 });
+		
+				$(document).on('click','.previous',function()
+				{
+			      element=$(this).attr('id');
+		         last = parseInt(element.substr(element.length - 1));
+		         pre=last-1;
+		         $('#question'+last).addClass('hide');
+		         $('#question'+pre).removeClass('hide');
+		      });
+			</script>
 			</body>
 	   </html>
 		<?php 
@@ -174,18 +151,13 @@
 			{
 			   header( 'Location: wa_quiz_practice.php' ) ;
 		   }
-		  
 		}//end try
 		catch(PDOException $e)
 	   {
-			// roll back the transaction if something failed
 		   $conn->rollback();
 		   echo "Error: " . $e->getMessage();
 		}
 		   $res=null;
 			$conn = null;
 			include("footer.php");
-			
-
-
 ?>

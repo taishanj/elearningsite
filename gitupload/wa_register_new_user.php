@@ -9,8 +9,6 @@
 	         <hr>
 		      <label for="firstname"><b>Firstname</b></label>
 	         <input type="text" placeholder="Enter Firstname" name="firstname" required>
-	         <label for="lastname"><b>Lastname</b></label>
-	         <input type="text" placeholder="Enter Lastname" name="lastname" required>
 	         <label for="email"><b>Email</b></label>
 	         <input type="text" placeholder="Enter Email" name="email" required>
 	         <label for="pwd"><b>Password</b></label>

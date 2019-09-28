@@ -10,7 +10,7 @@
 	      <h4><?php echo "Your clicks are " . $_SESSION['clickCount'] . ".<br>";?></h4>
       </div> 
    <?php
-		$query_enrolled_courses = $conn->prepare("SELECT USER_coursename FROM Users WHERE USER_id = ?");
+		$query_enrolled_courses = $conn->prepare("SELECT USER_coursename FROM Users WHERE USER_unique_id = ?");//??
 	   $query_enrolled_courses->execute([$_SESSION['id']]);
 		   if($query_enrolled_courses)
 			{
@@ -22,7 +22,7 @@
 				}
 			}
 			
-	   $query_enrolled_course_id = $conn->prepare("SELECT USER_course_chosen FROM Users WHERE USER_id = ?");
+	   $query_enrolled_course_id = $conn->prepare("SELECT USER_course_chosen_id FROM Users WHERE USER_unique_id = ?");
 	   $query_enrolled_course_id->execute([$_SESSION['id']]);
 		$enrolled_course_id = $query_enrolled_course_id->fetch(PDO::FETCH_NUM);
 		$_SESSION['course_number'] = $enrolled_course_id;

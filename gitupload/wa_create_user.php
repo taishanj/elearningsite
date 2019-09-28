@@ -8,7 +8,6 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
 	  $firstname = test_input($_POST["firstname"]);
-	  $lastname = test_input($_POST["lastname"]);
 	  $email = test_input($_POST["email"]);
 	  $password = test_input($_POST["pwd"]);
   }
@@ -43,8 +42,8 @@
    			 // Return Success - Valid Email
    			 $hash_password = password_hash($password,PASSWORD_BCRYPT,$options);
 	    		//Creates a new user account (email) if none already exists
-	    		 $add_to_database = "INSERT INTO MyGuests (STU_firstname, STU_lastname, STU_email,STU_password)
-	    		 VALUES ('$firstname','$lastname', '$email','$hash_password')";
+	    		 $add_to_database = "INSERT INTO MyGuests (STU_firstname, STU_email,STU_password)
+	    		 VALUES ('$firstname','$email','$hash_password')";
 	   		 $conn->exec($add_to_database);
 	          header('Location: wa_login_form.php'); 		 
 	  		 }

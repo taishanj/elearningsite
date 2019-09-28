@@ -49,13 +49,13 @@
 	               ?>       
 		            <div id='question<?php echo $i;?>' class='cont'>
 		               <p class='questions' id="qname<?php echo $i;?>"> <?php //echo $i?>.<?php echo $result['QUEST_name'];?></p>
-		                <input type="radio" value="1" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer1'];?>
+		                <input type="radio" value="1" id='radio1_<?php echo $result['QUEST_sequence'];?>' name='<?php echo echo $result['QUEST_sequence'];?>'/><?php echo $result['QUEST_answer1'];?>
 	                  <br/>
-	                  <input type="radio" value="2" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer2'];?>
+	                  <input type="radio" value="2" id='radio1_<?php echo $result['QUEST_sequence'];?>' name='<?php echo $result['QUEST_sequence'];?>'/><?php echo $result['QUEST_answer2'];?>
 	                  <br/>
-	                  <input type="radio" value="3" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer3'];?>
+	                  <input type="radio" value="3" id='radio1_<?php echo $result['QUEST_sequence'];?>' name='<?php echo $result['QUEST_sequence'];?>'/><?php echo $result['QUEST_answer3'];?>
 	                  <br/>
-	                  <input type="radio" value="4" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/><?php echo $result['QUEST_answer4'];?>
+	                  <input type="radio" value="4" id='radio1_<?php echo echo $result['QUEST_sequence'];?>'/><?php echo $result['QUEST_answer4'];?>
 	                  <br/>
 	                  <input type="radio" checked='checked' style='display:none' value="5" id='radio1_<?php echo $result['QUEST_id'];?>' name='<?php echo $result['QUEST_id'];?>'/>                                                                      
 	                  <br/>
@@ -118,7 +118,7 @@
 	      { 
 		      $keys=array_keys($_POST);
 		      $order=join(",",$keys);
-	        $response=$conn->prepare("select QUEST_id,QUEST_correct_answer from Questions where Quest_id IN($order) ORDER BY FIELD(QUEST_id,$order)");
+	        $response=$conn->prepare("select QUEST_sequence,QUEST_correct_answer from Questions where Quest_sequence IN($order) ORDER BY FIELD(QUEST_sequence,$order)");
 	        $response->execute();
 	        $right_answer=0;
 	        $wrong_answer=0;
@@ -127,7 +127,7 @@
 		     {
 		     	echo "Called";
 			     //if($result['answer']==$_POST[$result['id']])
-			     if($result['QUEST_id']==$_POST[$result['QUEST_correct_answer']])
+			     if($result['QUEST_sequence']==$_POST[$result['QUEST_correct_answer']])
 		        {
 				     $right_answer++;
 		        }
